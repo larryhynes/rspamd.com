@@ -12,7 +12,7 @@ This guide describes the main procedures to get and start working with rspamd. F
 - postfix MTA setup
 - rmilter setup
 - redis cache setup
-- webui setup with nginx proxy and letsencrypt certificates
+- WebUI setup with nginx proxy and letsencrypt certificates
 - dovecot with sieve plugin to sort mail and learn by moving messages to `Junk` folder
 
 For those who are planning migration from their SpamAssassin setups, it might be useful to check this [document](/doc/tutorials/migrate_sa.html)
@@ -122,7 +122,7 @@ To setup TLS for your mail system, we recommend using certificates issued by [le
 
 ## TLS Setup
 
-In this guide, we assume that all services have the same certificate which might not be desired if you want greater levels of security. However, for most purposes it is sufficient. First of all, install the `letsencrypt` tool and obtain the certificate for your domain. There is a good [guide here](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04) which describes the overall procedure for nginx web server. Since we suggest using nginx to proxy webui requests, then you might use that guide for your setup. You might also want to use the same certificate and private key in postfix and dovecot (as described above).
+In this guide, we assume that all services have the same certificate which might not be desired if you want greater levels of security. However, for most purposes it is sufficient. First of all, install the `letsencrypt` tool and obtain the certificate for your domain. There is a good [guide here](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04) which describes the overall procedure for nginx web server. Since we suggest using nginx to proxy WebUI requests, then you might use that guide for your setup. You might also want to use the same certificate and private key in postfix and dovecot (as described above).
 
 ## Caching setup
 
@@ -271,9 +271,9 @@ Moreover, you can store an encrypted password for better security. To generate s
 
 Then you can copy this string and store it in the configuration file. Rspamd uses the [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) algorithm that makes it very hard to brute-force this password even if it has been compromised.
 
-### Setting up the webui
+### Setting up the WebUI
 
-Webui is managed by a controller worker but you might want to proxy its requests using nginx, for example, to add `TLS` support. Here is a minimal setup required for nginx to do that:
+The WebUI is managed by a controller worker but you might want to proxy its requests using nginx, for example, to add `TLS` support. Here is a minimal setup required for nginx to do that:
 
 <div>
 <a class="btn btn-info btn-block btn-code" data-toggle="collapse" data-target="#nginx_cf">nginx.conf<i class="fa fa-caret-square-o-down fa-pull-right"></i></a><div id="nginx_cf" class="collapse collapse-block"><pre><code>
