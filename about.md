@@ -5,15 +5,15 @@ title: About rspamd
 
 ## Introduction
 
-Rspamd is an advanced spam filtering system that allows evaluation of messages by a number of rules including regular expressions, statistical analysis and custom services such as URL black lists. Each message is analysed by rspamd and given a `spam score`.
+rspamd is an advanced spam filtering system that allows evaluation of messages by a number of rules including regular expressions, statistical analysis and custom services such as URL black lists. Each message is analysed by rspamd and given a `spam score`.
 
-According to this spam score, and the user's settings, rspamd recommends an action for the MTA to apply to the message - for example to pass, reject or add a header. Rspamd is designed to process hundreds of messages per second simultaneously and has a number of features available.
+According to this spam score, and the user's settings, rspamd recommends an action for the MTA to apply to the message - for example to pass, reject or add a header. rspamd is designed to process hundreds of messages per second simultaneously and has a number of features available.
 
 ## Spam filtering features {#features}
 
 The rspamd distribution contains a number of mail processing features, including such techniques as:
 
-* **Regular expressions filtering** - allows basic processing of messages, their textual parts, MIME headers and SMTP data received by the MTA against a set of expressions that includes both normal regular expressions and message processing functions. Rspamd expressions are a powerful tool that allows message filtering based on pre-defined rules. This feature is similar to regular expressions in the spamassassin spam filter. Moreover, rspamd supports Spamassassin rules directly via [the plugin](https://rspamd.com/doc/modules/spamassassin.html).
+* **Regular expressions filtering** - allows basic processing of messages, their textual parts, MIME headers and SMTP data received by the MTA against a set of expressions that includes both normal regular expressions and message processing functions. rspamd expressions are a powerful tool that allows message filtering based on pre-defined rules. This feature is similar to regular expressions in the spamassassin spam filter. Moreover, rspamd supports Spamassassin rules directly via [the plugin](https://rspamd.com/doc/modules/spamassassin.html).
 
 
 * **SPF module** which validates a message's sender against the policy defined in the DNS record of the sender's domain. You can read about SPF policies [here](http://www.openspf.org/). A number of mail systems, such as `gmail` or `yahoo mail`, include SPF support.
@@ -21,10 +21,10 @@ The rspamd distribution contains a number of mail processing features, including
 
 * **DKIM module** validates a message's cryptographic signature against a public key placed in the DNS record of the sender's domain. Like SPF, this technique is widespread and allows validation that a message is sent by a specific domain.
 
-* **DMARC module** validates the joint SPF and DKIM policies for a sender and evaluates if there are additional restrictions. Rspamd also supports storing report data within [redis](http://redis.io) storage.
+* **DMARC module** validates the joint SPF and DKIM policies for a sender and evaluates if there are additional restrictions. rspamd also supports storing report data within [redis](http://redis.io) storage.
 
 
-* **DNS black lists** allows estimation of the reputation of a sender's IP address or network. Rspamd uses a number of DNS lists including such lists as `SORBS` and `spamhaus`. However, rspamd doesn't trust any specific DNS list and use a conjunction of estimates instead to avoid mistakes and false positives. Rspamd also uses positive and grey DNS lists to check for trusted senders.
+* **DNS black lists** allows estimation of the reputation of a sender's IP address or network. rspamd uses a number of DNS lists including such lists as `SORBS` and `spamhaus`. However, rspamd doesn't trust any specific DNS list and use a conjunction of estimates instead to avoid mistakes and false positives. rspamd also uses positive and grey DNS lists to check for trusted senders.
 
 
 * **URL black lists** are similar to DNS black lists but use URLs in a message to estimate a sender's reputation. This technique is very useful for finding malicious or phishing domains and filter such mail.
@@ -33,9 +33,9 @@ The rspamd distribution contains a number of mail processing features, including
 * **Statistics** - rspamd uses a Bayesian classifier based on five-grams of input. This means that the input is estimated not based on individual words, but all input is organized in chains that are further estimated by the Bayesian classifier. This approach enables better results than traditional unigrams (or words, literally speaking). The approach is described in detail in the following [paper](http://osbf-lua.luaforge.net/papers/osbf-eddc.pdf).
 
 
-* **Fuzzy hashes** - rspamd uses so-called `fuzzy hashes` to check for malicious mail patterns. Unlike normal hashes, a fuzzy hash can ignore small differences between text patterns and can be used to find similar messages quickly. Rspamd uses internal storage of fuzzy hashes and blocks mass spam sendings quickly based on user feedback to rate message reputation. It also allows the feeding of rspamd with data from [`honeypots`](http://en.wikipedia.org/wiki/Honeypot_(computing)#Spam_versions) without polluting the statistical module.
+* **Fuzzy hashes** - rspamd uses so-called `fuzzy hashes` to check for malicious mail patterns. Unlike normal hashes, a fuzzy hash can ignore small differences between text patterns and can be used to find similar messages quickly. rspamd uses internal storage of fuzzy hashes and blocks mass spam sendings quickly based on user feedback to rate message reputation. It also allows the feeding of rspamd with data from [`honeypots`](http://en.wikipedia.org/wiki/Honeypot_(computing)#Spam_versions) without polluting the statistical module.
 
-Rspamd uses a blend of techniques to make a final decision about a message. This improves the overall quality of filtering and reduces the number of false positives (e.g. when an innocent message is badly classified as a spam one). I have tried to simplify rspamd usage by adding the following elements:
+rspamd uses a blend of techniques to make a final decision about a message. This improves the overall quality of filtering and reduces the number of false positives (e.g. when an innocent message is badly classified as a spam one). I have tried to simplify rspamd usage by adding the following elements:
 
 * **Web interface** - rspamd is shipped with a fully functional ajax-based web interface that allows observation of rspamd statistic; configuration of rules, weights and lists; scanning and learning messages and viewing the scan history. The interface is self-hosted, requires zero configuration and follows recent web applications standards. You don't need a web or application server to run the web UI - you just need a running instance of rspamd and a web browser.
 
@@ -45,11 +45,11 @@ Rspamd uses a blend of techniques to make a final decision about a message. This
 
 * **Easy configuration** - rspamd uses the [`UCL` language](https://github.com/vstakhov/libucl) for configuration. UCL is a simple and intuitive language that is focused on easy to read configuration files. You have many options in writing definitions, so use whatever you like (even a strict `JSON` would be OK).
 
-* **Dynamic tables** - rspamd allows the specification of some data as `dynamic maps` which are checked in runtime, with data updated when they change. Rspamd supports file and HTTP maps.
+* **Dynamic tables** - rspamd allows the specification of some data as `dynamic maps` which are checked in runtime, with data updated when they change. rspamd supports file and HTTP maps.
 
 ## Performance {#performance}
 
-Rspamd was designed to be fast. The core of rspamd is written in `C` and uses an event-driven model that allows the processing of multiple messages simultaneously without blocking. Moreover, a set of techniques was used in rspamd to speed up message processing:
+rspamd was designed to be fast. The core of rspamd is written in `C` and uses an event-driven model that allows the processing of multiple messages simultaneously without blocking. Moreover, a set of techniques was used in rspamd to speed up message processing:
 
 * **Finite state machines** - rspamd uses specialised finite state machines for performance-critical tasks to process input faster than a set of regular expressions. Of course, it is possible to implement these machines by ordinary `perl regular expressions` but then they won't be compact or human-readable. On the contrary, rspamd optimizes such actions as header processing, received elements extraction and protocol operations by building concrete automata for an assigned task.
 
