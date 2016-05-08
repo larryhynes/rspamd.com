@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Rspamd spam filtering system
+title: rspamd spam filtering system
 ---
 
 <div class="row myRowEq">
 	<div class="col-xs-12 col-sm-4 myMainPageText">
 			<div>
 					<h2>Performance</h2>
-					<p>&bull;&nbsp;Rspamd is a mail filtering tool that is designed to work as fast as possible.</p>
+					<p>&bull;&nbsp;rspamd is a mail filtering tool that is designed to work as fast as possible.</p>
 					<p>&bull;&nbsp;It can <strong>save</strong> your hardware resources by applying clever techniques, such as an event based processing model, <a class="undecor" href="https://highsecure.ru/ast-rspamd.pdf">abstract syntax tree</a> constructions, careful algorithm selection and a number of global and local optimisations, such as the use of <a class="undecor" href="https://github.com/01org/hyperscan">hyperscan</a> for <a class="undecor" href="https://highsecure.ru/rspamd-hyperscan.pdf">regular expressions optimisation</a>.</p>
-					<p>&bull;&nbsp;Rspamd's core is written completely in C and the most critical parts are written in dedicated assembly for the target hardware platforms.
+					<p>&bull;&nbsp;rspamd's core is written completely in C and the most critical parts are written in dedicated assembly for the target hardware platforms.
 					</p>
 		 </div>
 		 <a class="btn btn-primary" href="about.html#performance">View details &raquo;</a>
@@ -17,10 +17,10 @@ title: Rspamd spam filtering system
 	<div class="col-xs-12 col-sm-4 myMainPageText">
 		  <div>
 					<h2>Features</h2>
-					<p>&bull;&nbsp;Rspamd ships with a wide selection of filters to process messages, such as <a class="undecor" href="/doc/modules/regexp.html">regular expressions</a>, DNS black and white <a class="undecor" href="/doc/modules/rbl.html">lists</a>, <a class="undecor" href="/doc/modules/surbl.html">URL</a> black lists, <a class="undecor" href="/doc/modules/multimap.html">dynamic</a> IP/hosts or DNS lists, <a class="undecor" href="/doc/modules/spf.html">SPF</a> module, <a class="undecor" href="/doc/modules/dkim.html">DKIM</a> plugin and <a class="undecor" href="/doc/modules/dmarc.html">DMARC</a> policy check support.</p>
+					<p>&bull;&nbsp;rspamd ships with a wide selection of filters to process messages, such as <a class="undecor" href="/doc/modules/regexp.html">regular expressions</a>, DNS black and white <a class="undecor" href="/doc/modules/rbl.html">lists</a>, <a class="undecor" href="/doc/modules/surbl.html">URL</a> black lists, <a class="undecor" href="/doc/modules/multimap.html">dynamic</a> IP/hosts or DNS lists, <a class="undecor" href="/doc/modules/spf.html">SPF</a> module, <a class="undecor" href="/doc/modules/dkim.html">DKIM</a> plugin and <a class="undecor" href="/doc/modules/dmarc.html">DMARC</a> policy check support.</p>
 				    <p>&bull;&nbsp;For advanced filtering rspamd provides an improved statistics module (based on
 					   <a class="undecor" href="http://osbf-lua.luaforge.net/papers/osbf-eddc.pdf">an OSB-Bayes algorithm</a>) and a <a class="undecor" href="/doc/modules/fuzzy_check.html">fuzzy hashes</a> database that is generated based on <a class="undecor" href="http://en.wikipedia.org/wiki/Honeypot_%28computing%29">honeypot</a> traffic.</p>
-				     <p>&bull;&nbsp;Rspamd also keeps partial compatibility with <a class="undecor" href="http://spamassassin.apache.org">spamassassin</a> rules via <a class="undecor" href="/doc/modules/spamassassin.html">the translation module</a>.</p>
+				     <p>&bull;&nbsp;rspamd also keeps partial compatibility with <a class="undecor" href="http://spamassassin.apache.org">spamassassin</a> rules via <a class="undecor" href="/doc/modules/spamassassin.html">the translation module</a>.</p>
 			</div>
 		  <a class="btn btn-primary" href="about.html#features">View details &raquo;</a>
 	</div>
