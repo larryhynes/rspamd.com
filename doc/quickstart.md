@@ -1,9 +1,9 @@
 ---
 layout: doc_quickstart
-title: Rspamd+rmilter quick start
+title: rspamd+rmilter quick start
 ---
 
-# Rspamd and rmilter quick start
+# rspamd and rmilter quick start
 
 ## Introduction
 
@@ -132,7 +132,7 @@ Both rspamd and rmilter can use [redis](https://redis.io) for caching. Rmilter u
 - rate limits
 - storing reply message IDs to avoid certain checks for replies to our own messages
 
-Rspamd uses redis as well:
+rspamd uses redis as well:
 
 - for statistic tokens (BAYES classifier)
 - for storing learned messages IDs
@@ -154,11 +154,11 @@ To install rmilter, please follow the instructions on the [downloads page](/down
 
 For advanced setup, please check the [rmilter documentation](/rmilter/). Rmilter starts as daemon (e.g. by typing `service rmilter start`) and writes output to the system log. If you have a systemd-less system, then you can check rmilter logs in the `/var/log/mail.log` file. For systemd, please check your OS documentation about reading logs as the exact command might differ from system to system.
 
-## Rspamd installation
+## rspamd installation
 
 The download process is described in the [downloads page](/downloads.html) where you can find how to obtain rspamd, how to install it in your system, and, alternatively, how to build rspamd from source.
 
-## Running Rspamd
+## Running rspamd
 
 ### Platforms with systemd (Arch, CentOS 7, Debian Jessie, Fedora, openSUSE, SLE)
 
@@ -175,7 +175,7 @@ systemctl enable rmilter.socket
 systemctl start rmilter.socket
 ```
 
-Rspamd will be started on-demand, so to simulate this you could run:
+rspamd will be started on-demand, so to simulate this you could run:
 
 	rspamc stat
 
@@ -201,7 +201,7 @@ To start once:
 
 ## Configuring Rspamd
 
-Though Rspamd's default config aims to be useful for most purposes you may wish to make some adjustments to suit your environment/tastes.
+Though rspamd's default config aims to be useful for most purposes you may wish to make some adjustments to suit your environment/tastes.
 
 There are some different approaches you can take to this:
 
@@ -240,7 +240,7 @@ as this will set the other actions to be undefined.
 
 ### Setting listening interface
 
-Rspamd's normal worker will, by default, listen on all interfaces on port 11333. If you're running Rspamd on the same machine as your mailer (or whatever will be querying it) you might want to set this to 'localhost' instead.
+rspamd's normal worker will, by default, listen on all interfaces on port 11333. If you're running rspamd on the same machine as your mailer (or whatever will be querying it) you might want to set this to 'localhost' instead.
 
 This is configured in `rspamd.conf` or `rspamd.sysvinit.conf` on Debian Wheezy & Ubuntu. The config to be modified is shown below (`*` should be replaced with whatever address you would prefer to listen on).
 
@@ -255,7 +255,7 @@ If you plan to leave this as is you may wish to use a firewall to restrict acces
 
 ### Setting the controller password
 
-Rspamd requires a password when queried from non-trusted IPs, except for scanning messages which is unrestricted (the default config trusts the loopback interface). This is configured in the file `worker-controller.inc`. The config to be modified is shown below (replace 'q1' with your chosen password):
+rspamd requires a password when queried from non-trusted IPs, except for scanning messages which is unrestricted (the default config trusts the loopback interface). This is configured in the file `worker-controller.inc`. The config to be modified is shown below (replace 'q1' with your chosen password):
 
 `password = "q1";`
 
@@ -269,7 +269,7 @@ Moreover, you can store an encrypted password for better security. To generate s
 	Enter passphrase:
 	$1$4mqeynj3st9pb7cgbj6uoyhnyu3cp8d3$59y6xa4mrihaqdw3tf5mtpzg4k7u69ypebc3yba8jdssoh39x16y
 
-Then you can copy this string and store it in the configuration file. Rspamd uses the [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) algorithm that makes it very hard to brute-force this password even if it has been compromised.
+Then you can copy this string and store it in the configuration file. rspamd uses the [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) algorithm that makes it very hard to brute-force this password even if it has been compromised.
 
 ### Setting up the WebUI
 
@@ -386,7 +386,7 @@ For other possibilities please read the full [documentation](/doc/statistic.html
 
 ## Adjusting scores and actions
 
-Unlike SA where there are only `spam` and `ham` results, Rspamd supports five levels of results called `actions`:
+Unlike SA where there are only `spam` and `ham` results, rspamd supports five levels of results called `actions`:
 
 + `no action` - ham message
 + `greylist` - turn on adaptive greylisting (which is also used on higher levels)
@@ -394,7 +394,7 @@ Unlike SA where there are only `spam` and `ham` results, Rspamd supports five le
 + `rewrite subject` - rewrite subject to `*** SPAM *** original subject`
 + `reject` - ultimately reject message
 
-Each action can have its own score limit which can be modified by user settings. Rspamd assumes the following order of action scores: `no action` <= `greylist` <= `add header` <= `rewrite subject` <= `reject`.
+Each action can have its own score limit which can be modified by user settings. rspamd assumes the following order of action scores: `no action` <= `greylist` <= `add header` <= `rewrite subject` <= `reject`.
 
 Actions are **NOT** performed by rspamd itself - they are just recommendations for the MTA agent (rmilter, for example) which performs the necessary actions, such as adding headers or rejecting mail.
 
@@ -446,7 +446,7 @@ metric "default" {
 
 ## Configuring maps
 
-Another feature of Rspamd is maps support. Maps are lists of values, for example, domain names or ip/networks listed in an external file or by HTTP that are periodically monitored by Rspamd and reloaded in case of updates. This technique is useful for writing your own rules, whitelisting or blacklisting some networks and so on. The important difference with maps is that rspamd restart is not required when those lists are changed. Maps are defined as `URI` strings:
+Another feature of rspamd is maps support. Maps are lists of values, for example, domain names or ip/networks listed in an external file or by HTTP that are periodically monitored by rspamd and reloaded in case of updates. This technique is useful for writing your own rules, whitelisting or blacklisting some networks and so on. The important difference with maps is that rspamd restart is not required when those lists are changed. Maps are defined as `URI` strings:
 
 * `http://example.com/file.map` - HTTP map (server should respect `If-Modified-Since` header to avoid unnecessary updates)
 * `file:///path/to/map` - file map
@@ -464,7 +464,7 @@ There is a special module called `multimap` that allows you to define your own m
 
 ## Configuring RBLs
 
-Though Rspamd is free to use for any purpose many of the RBLs used in the default configuration aren't & care should be taken to see that your use cases are not infringing. Notes about specific RBLs follow below (please follow the links for details):
+Though rspamd is free to use for any purpose many of the RBLs used in the default configuration aren't & care should be taken to see that your use cases are not infringing. Notes about specific RBLs follow below (please follow the links for details):
 
 [Spamhaus](https://www.spamhaus.org/organization/dnsblusage/) - Commercial use forbidden (see link for definition); Limit of 300k queries or 100k SMTP connections per day
 
@@ -484,11 +484,11 @@ Though Rspamd is free to use for any purpose many of the RBLs used in the defaul
 
 These are configured in `modules.conf` in the `rbl{}` and `surbl{}` sections. Detailed documentation for the RBL module is available [here](https://rspamd.com/doc/modules/rbl.html).
 
-## Using Rspamd
+## Using rspamd
 
 ### Using rspamc console routine
 
-`rspamc` implements a feature-complete client for Rspamd. For detailed documentation refer to `man rspamc`.
+`rspamc` implements a feature-complete client for rspamd. For detailed documentation refer to `man rspamc`.
 
 Common use-cases for `rspamc` include:
 
@@ -566,4 +566,4 @@ Here is a screenshot of this addon in use:
 
 ### Using the WebUI
 
-Rspamd has a built-in WebUI which supports setting metric actions and scores; Bayes training and scanning messages - for more information see the [webui documentation](https://rspamd.com/webui).
+rspamd has a built-in WebUI which supports setting metric actions and scores; Bayes training and scanning messages - for more information see the [webui documentation](https://rspamd.com/webui).
