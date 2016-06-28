@@ -2,8 +2,66 @@
 layout: default
 title: Rspamd spam filtering system
 ---
+<div class="row main-small-text-block">
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+		    <div class="thumbnail">
+				    <img src="img/performance.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="/about.html#performance">Performance <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Rspamd is designed to be fast and can process up to 100 emails per second
+								using a single CPU core</p>
+						</div>
+				</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+		    <div class="thumbnail">
+				    <img src="img/features.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="/about.html#features">Features <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Learn about the wide range of technologies supported by rspamd to filter spam</p>
+						</div>
+				</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+				<div class="thumbnail">
+						<img src="img/compare.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="#">Compare <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Compare rspamd with other spam filtering systems</p>
+						</div>
+				</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+				<div class="thumbnail">
+						<img src="img/documentation.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="/doc/">Documentation <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Study how to install, configure and extend rspamd using the documentation provided</p>
+						</div>
+				</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+				<div class="thumbnail">
+						<img src="img/media.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="#">Media <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Watch videos and presentations about rspamd</p>
+						</div>
+				</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4 main-small-text">
+				<div class="thumbnail">
+						<img src="img/support.jpg" class="" height="80" width="80">
+						<div class="caption">
+								<h2><a href="/support.html">Donation & Support <small><i class="fa fa-chevron-right" style="color: #dd4814"></i></small></a></h2>
+								<p class="text-justify">Check this page if you need help or want to make a donation or contribute to rspamd</p>
+						</div>
+				</div>
+		</div>
+</div>
 
-<div class="row myRowEq">
+
+<!--div class="row myRowEq">
 	<div class="col-xs-12 col-sm-4 myMainPageText">
 			<div>
 					<h2>Performance</h2>
@@ -33,18 +91,4 @@ title: Rspamd spam filtering system
       </div>
 			<a class="btn btn-primary" href="about.html#extensions">View details &raquo;</a>
 	</div>
-</div>
-
-{% for post in site.posts limit:3 %}
-<div class="row">
-	<div class="well col-xs-12">
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <p class="author">
-    <span class="date"><small>{{ post.date }}</small></span>
-  </p>
-<div class="short-news content" markdown="1">
-{{ post.content }}
-</div>
-</div>
-</div>
-{% endfor %}
+</div-->
