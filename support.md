@@ -1,43 +1,91 @@
 ---
-layout: default
+layout: support
 title: Rspamd Support
 ---
 
-# Rspamd support
+<div>
+    <div class="row support-block">
+        <div class="col-sm-3 col-xs-12">
+            <a class="btn btn-social btn-primary btn-block" href="https://groups.google.com/forum/#!forum/rspamd"><i class="fa fa-envelope-o"></i> Mailing list</a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <p>You can use the following mailing list hosted at Google Groups to ask technical and general questions related to Rspamd. Please mention that you need to join the mailing list before posting your questions.</p>
+        </div>
+    </div>
+    <div class="row support-block">
+        <div class="col-sm-3 col-xs-12">
+            <a class="btn btn-social btn-reddit btn-block" href="https://freenode.net" data-toggle="tooltip" data-placement="top" title="channel #rspamd"><i class="fa fa-comments-o"></i>IRC channel</a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <p>If you need immediate help or you would like to discuss something abour Rspamd you can use the IRC channel <i>#rspamd</i> at <a href="https://freenode.net">Freenode</a> network. You can read more about IRC <a role="button" data-toggle="collapse" data-target="#add_irc">here <i class="fa fa-caret-square-o-down"></i></a>.</p>
+            <div id="add_irc" class="collapse collapse-link">
+<div markdown="1">
 
-If you cannot find the answer to your question in the documentation or you have found a bug in rspamd or want to suggest a feature please feel free to use any comfortable way from the list below.
+### Rspamd IRC channel
 
-## Mailing list
+The vast majority of technical discussion topics are held within the dedicated [IRC](https://en.wikipedia.org/wiki/IRC) channel.
 
-For general and technical questions you can use rspamd mailing list provided by google groups:
-<https://groups.google.com/forum/#!forum/rspamd>
+For those who are familiar with IRC, here are settings for IRC channel access:
 
-## IRC channel
+* server: `irc.freenode.net` (port 6666)
+* channel: `#rspamd`
 
-For immediate help and discussions you can use IRC channel *#rspamd* in <http://freenode.net>
+### IRC quick tutorial
 
-You can read more about IRC [here](irc.html).
+To access IRC, you can use a set of clients for your favourite platform, for instance:
 
-## Twitter
+* [Xchat](http://www.xchat.org) - cross-platform GUI client
+* [Irssi](http://www.irssi.org) - console client
+* [Androirc](https://play.google.com/store/apps/details?id=com.androirc) - android IRC client
 
-Please follow [@rspamd](https://twitter.com/rspamd) for the most recent project news and updates.
+Alternatively, you could use some web interface to access IRC:
 
-## Issue tracker
+* [Freenode webchat](https://webchat.freenode.net/) - a simple web interface
+* [Irccloud](https://irccloud.com) - advanced platform with tonns of features
 
-If you find a bug in rspamd or would like to request a feature you can use issue trackers for Rspamd project:
+### IRC rules
 
-* <https://github.com/vstakhov/rspamd/issues>
+There are no strict rules in rspamd discussion channel, just some generic ones:
 
-## Donations
+* no spam
+* no flood
+* no abuse
 
-If you would like to support Rspamd development, we are accepting donations via paypal.
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="ZPPE6T9WUR9XA">
-<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form>
+Please do not expect the immediate reply: we all have different task ongoing and different timezones.
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="row support-block">
+        <div class="col-sm-3 col-xs-12">
+            <a class="btn btn-social btn-twitter btn-block" href="https://twitter.com/rspamd"><i class="fa fa-twitter"></i> Twitter</a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <p>Follow Rspamd on Twitter to receive the most recent news about the project, including release announces.</p>
+        </div>
+    </div>
+    <div class="row support-block">
+        <div class="col-sm-3 col-xs-12">
+            <a class="btn btn-social btn-github btn-block" href="https://github.com/vstakhov/rspamd"><i class="fa fa-github"></i> GitHub</a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <p>If you find a bug or would like to ask for a specific feature then you can use issue tracker hosted on GitHub. We also welcome pull requests if you would like to submit patches for any part of the project: documentation, site, WebUI, Rmilter and Rspamd itself.</p>
+        </div>
+    </div>
+    <div class="row support-block">
+        <div class="col-sm-3 col-xs-12">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="32NL9H6JS6K9C">
+                <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <p>If you would like to support Rspamd development, we are accepting donations via PayPal.</p>
+        </div>
+    </div>
+</div>
 
 ## Commercial support
 

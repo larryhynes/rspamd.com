@@ -1,4 +1,6 @@
+<div id="wrapper">
 {% include top.html %}
+<!-- remove the white space after footer-->
 
   <!-- Jumbotron -->
   <div class="jumbotron" id="jumbo-performance">
@@ -8,7 +10,11 @@
   </div>
 
 	 <div class="container">
-	      <div class="body-content">
+        <ol class="breadcrumb">
+           <li><a href="/">Home</a></li>
+           <li class="active">Performance</li>
+        </ol>
+	      <div class="body-content doc-content">
 	                {{ content }}
 	      </div><!-- /.body-content -->
 
@@ -18,4 +24,6 @@
 				-->
 
     </div> <!-- /container -->
+    <div class="push"></div>
+</div>
 {% include bottom.html %}
