@@ -5,14 +5,14 @@ title: About rmilter
 
 ## Introduction
 
-Rmilter is used to integrate rspamd and `milter` compatible MTA, for example Postfix or Sendmail. It also performs other useful functions for email filtering including:
+Rmilter is used to integrate Rspamd and `milter` compatible MTA, for example Postfix or Sendmail. It also performs other useful functions for email filtering including:
 
-- Virus scanning using [Clamav](http://clamav.net)
+- Virus scanning using [ClamAV](http://clamav.net)
 - Spam scanning using Rspamd
-- Greylisting using redis storage
-- Ratelimit using redis storage
+- Greylisting using Redis storage
+- Ratelimit using Redis storage
 - Replies check (whitelisting replies to sent messages)
-- Passing certain messages to redis pub/sub channels
+- Passing certain messages to Redis Pub/Sub channels
 - DKIM signing
 
 <div>
@@ -36,11 +36,11 @@ Rmilter is used to integrate rspamd and `milter` compatible MTA, for example Pos
 
 ## Postfix settings
 
-Here is a scheme that demonstrates Rspamd and Rmilter integration using Postfix MTA:
+Here is a scheme that demonstrates Rspamd and Postfix MTA integration using Rmilter:
 
 <img class="img-responsive" src="/img/rspamd-schemes.007_2.png">
 
-There are several useful settings for postfix to work with this milter:
+There are several useful settings for Postfix to work with this milter:
 
     smtpd_milters = unix:/var/run/rmilter/rmilter.sock
     milter_mail_macros =  i {mail_addr} {client_addr} {client_name} {auth_authen}
@@ -48,10 +48,64 @@ There are several useful settings for postfix to work with this milter:
 
 <div style="padding-top:20px;"></div>
 
-## Useful rmilter recipies
+## Useful Rmilter recipes
 
 This section contains a number of useful configuration recipes and best practices for Rmilter.
 
+
+### Adding local changes to Rmilter configuration
+
+Since version 1.9, Rmilter supports macros `.try_include` that can be used to conditionally include some user specific file. There is also globbing support in all `include` macros, so you can use `*` or `?` in your patterns. By default, Rmilter tries to include `/etc/rmilter.conf.local` and then all files that match the pattern `/etc/rmilter.conf.d/*.conf` (there could be a different prefix for your system). The settings are natively overridden by files inside files included. Hence, settings that are defined **later** will override settings that are defined earlier:
+
+~~~ucl
+# /etc/rmilter.conf
+spamd {
+    servers = localhost:11333; # overridden
+}
+
+# Includes are after the main definition
+.try_include /etc/rmilter.conf.local
+.try_include /etc/rmilter.conf.d/*.conf
+~~~
+
+~~~ucl
+# /etc/rmilter.conf.local
+spamd {
+    servers = example.com:11333; # overridden
+    timeout = 5s; # added
+}
+~~~
+
+~~~ucl
+# /etc/rmilter.conf.d/spamd.conf
+spamd {
+    servers = other.com:11333;
+}
+~~~
+
+will produce the following configuration:
+
+~~~ucl
+# resulting configuration
+spamd {
+    servers = other.com:11333;
+    timeout = 5s;
+}
+~~~
+
+### How to disable greylisting and ratelimit in Rmilter
+
+From version `1.9.1` it is possible to specify `enable` option in `greylisting` and `ratelimit` sections. These options are `true` by default. Here is an example of configuration where greylisting and ratelimit are disabled:
+
+~~~ucl
+# /etc/rmilter.conf.local
+limits {
+    enable = false;
+}
+greylisting {
+    enable = false;
+}
+~~~
 
 ### Setup DKIM signing of outcoming email for authenticated users
 
@@ -81,14 +135,14 @@ is passed to milter on `MAIL FROM` stage:
 ### Setup whitelisting of reply messages
 
 It is possible to store `Message-ID` headers for authenticated users and whitelist replies to that messages by using of Rmilter. To enable this
-feature, please ensure that you have `redis` server running and add the following lines to Redis section:
+feature, please ensure that you have Redis server running and add the following lines to `redis` section:
 
     redis {
       ...
-      # servers_id - redis servers used for message id storing, can not be mirrored
+      # servers_id - Redis servers used for message id storing, can not be mirrored
       servers_id = localhost;
 
-      # id_prefix - prefix for extracting message ids from redis
+      # id_prefix - prefix for extracting message ids from Redis
       # Default: empty (no prefix is prepended to key)
       id_prefix = "message_id.";
     }

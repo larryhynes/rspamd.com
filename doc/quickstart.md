@@ -189,24 +189,15 @@ The download process is described in the [downloads page](/downloads.html) where
 
 ## Running Rspamd
 
-### Platforms with systemd (Arch, CentOS 7, Debian Jessie, Fedora, openSUSE, SLE)
+### Platforms with systemd (Arch, CentOS 7, Debian Jessie, Fedora, Ubuntu Xenial)
 
-To enable run on startup:
+Packaging should start rspamd and configure it to run on startup on installation.
+
+You can verify it's running as follows:
 
 ```
-systemctl enable rspamd.socket
-systemctl start rspamd.socket
+systemctl status rspamd
 ```
-
-For Rmilter, you might also want to do the same:
-```
-systemctl enable rmilter.socket
-systemctl start rmilter.socket
-```
-
-Rspamd will be started on-demand, so to simulate this you could run:
-
-	rspamc stat
 
 ### Ubuntu, Debian Wheezy
 
@@ -317,11 +308,21 @@ enable_password = "q2";
 
 Moreover, you can store an encrypted password for better security. To generate such a password just type
 
-	$ rspamd --encrypt-password
+	$ rspamdadm pw
 	Enter passphrase:
 	$1$4mqeynj3st9pb7cgbj6uoyhnyu3cp8d3$59y6xa4mrihaqdw3tf5mtpzg4k7u69ypebc3yba8jdssoh39x16y
 
-Then you can copy this string and store it in the configuration file. Rspamd uses the [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) algorithm that makes it very hard to brute-force this password even if it has been compromised. From the version 1.3, Rspamd also support `
+Then you can copy this string and store it in the configuration file. Rspamd uses the [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) algorithm that makes it very hard to brute-force this password even if it has been compromised. From the version 1.3, Rspamd also support [Catena](https://eprint.iacr.org/2013/525.pdf) password hashing scheme which makes brute-force attacks even more memory- and computationally expensive. It is available via `--type` option:
+
+        $ rspamadm pw --type catena
+        Enter passphrase:
+        $2$g95ywihfinjqx4r69u6mgfs9cqbfq1ay$1h4bm5uod9njfu3hdbwd3w5xf5d9u8gb7i9xnimm5u8ddq3c5byy
+
+For the list of all available hashing schemes, use `--list` option:
+
+        $ ./rspamadm pw --list
+        pbkdf2: PBKDF2-blake2b - standard CPU intensive "slow" KDF using blake2b hash function
+        catena: Catena-Butterfly - modern CPU and memory intensive KDF
 
 ### Setting up the WebUI
 
@@ -434,7 +435,7 @@ classifier {
 }
 {% endhighlight %}
 
-For other possibilities please read the full [documentation](/doc/statistic.html). The more specific Redis related documentation can be found [here](/doc/configuration/redis.html).
+For other possibilities please read the full [documentation](/doc/configuration/statistic.html). The more specific Redis related documentation can be found [here](/doc/configuration/redis.html).
 
 ## Adjusting scores and actions
 

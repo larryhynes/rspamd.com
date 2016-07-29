@@ -6,7 +6,7 @@ title: Downloads
 <!--# Downloading rspamd->
 
 <!-- download button with tooltip
-<p><a class="btn btn-primary btn-lg" href="/downloads/rspamd-1.2.8.tar.xz" data-toggle="tooltip" data-placement="right" title="Download the most recent stable version as source tarball">Download rspamd-1.2.8</a></p>
+<p><a class="btn btn-primary btn-lg" href="/downloads/rspamd-1.3.0.tar.xz" data-toggle="tooltip" data-placement="right" title="Download the most recent stable version as source tarball">Download rspamd-1.3.0</a></p>
 <!-- github button >
 <p><iframe src="//rspamd.com/github-btn.html?user=vstakhov&repo=rspamd&type=watch&count=true&size=large"
   allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe></p-->
@@ -84,7 +84,7 @@ Rspamd supports the following .deb based distributives:
 
 To install the rspamd <a class="undecor" href="#stableSys2">stable<sup>1</sup></a> apt repository, please use the following commands:
 
-    apt-get install -y lsb-release # optional
+    apt-get install -y lsb-release wget # optional
     CODENAME=`lsb_release -c -s`
     wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add -
     echo "deb http://rspamd.com/apt-stable/ $CODENAME main" > /etc/apt/sources.list.d/rspamd.list
@@ -96,7 +96,7 @@ To obtain your distributive's codename, you could use the command `lsb_release -
 
 For <a class="undecor" href="#experimentalSys2">experimental<sup>2</sup></a> branch replace `apt-stable` with just `apt`:
 
-    apt-get install -y lsb-release # optional
+    apt-get install -y lsb-release wget # optional
     CODENAME=`lsb_release -c -s`
     wget -O- https://rspamd.com/apt/gpg.key | apt-key add -
     echo "deb http://rspamd.com/apt/ $CODENAME main" > /etc/apt/sources.list.d/rspamd.list
@@ -122,18 +122,22 @@ Please **DO NOT** use those packages, as they are no longer supported.
 <div markdown="1">
 Rspamd is also supported on the following Linux distributions:
 
-- **Gentoo Linux**
+- **Alpine Linux**
 - **Arch Linux**
-- **Scientific Linux**
-- **SUSE Linux Enterprise**
-- **OpenSUSE Linux**
+- **Gentoo Linux**
+- **Void Linux**
+
+### Alpine Linux
+Rspamd is available in the [testing repository](https://pkgs.alpinelinux.org/package/edge/testing/x86_64/rspamd)
+
+### Arch Linux
+Rspamd is available in the [AUR](https://aur.archlinux.org/packages/rspamd)
 
 ### Gentoo Linux
-Ebuilds for Gentoo Linux users are available in the main Gentoo Portage repository.
+Ebuilds for Gentoo Linux users are available in the main [Gentoo Portage repository](https://packages.gentoo.org/packages/mail-filter/rspamd).
 
-### Other Linux distributions
-
-For other distributions you could also check [our project on the openSUSE build service](https://software.opensuse.org/download.html?project=home%3Acebka&package=rspamd).
+### Void Linux
+Packages for Void Linux are available in the main [package repository](https://github.com/voidlinux/void-packages/tree/master/srcpkgs/rspamd).
 
 </div>
         </div>
